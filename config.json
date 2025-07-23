@@ -1,0 +1,15 @@
+{
+    "ilh_id": "1",
+    "ilh_descricao": "Description",
+    "server_url": "http://example.com.br",
+    "language": "pt",
+    "ilh_tempo_dado_offline": 0,
+    "ilh_app_key": "app_key",
+    "proxyIp": "",
+    "proxyPort": "",
+    "proxyUser": "",
+    "proxyPass": "",
+    "timezone": "America/Sao_Paulo",
+    "ilh_plc_ip": "xxx.xxx.xx.x",
+    "ilh_plc_porta": 1
+}
