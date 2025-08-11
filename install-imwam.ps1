@@ -46,10 +46,21 @@ if (-not (Test-Path $LogsDir)) {
     New-Item -ItemType Directory -Path $LogsDir -Force | Out-Null
 }
 
-# remove servico antigo, se existir
+# verifica se o serviço existe
 & $nssmExe status $ServiceName 2>$null
 if ($LASTEXITCODE -eq 0) {
-    Write-Host "Servico '$ServiceName' existe - removendo..."
+    Write-Host "Serviço '$ServiceName' existe."
+
+    # tenta parar o serviço se estiver rodando
+    $serviceStatus = & $nssmExe status $ServiceName
+    if ($serviceStatus -eq "SERVICE_RUNNING") {
+        Write-Host "Parando o serviço '$ServiceName'..."
+        & $nssmExe stop $ServiceName
+        Start-Sleep -Seconds 2  # delay de 2s para garantir que o serviço pare
+    }
+
+    #remove o serviço
+    Write-Host "Removendo o serviço '$ServiceName'..."
     & $nssmExe remove $ServiceName confirm
 }
 
